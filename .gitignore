@@ -1,4 +1,7 @@
-/bin
-/obj
-/packages
+bin/
+obj/
+[Dd]ebug
+[Rr]elease
+packages/
 .vs/
+*.cache
