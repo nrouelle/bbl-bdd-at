@@ -1,27 +1,26 @@
 using System;
+using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace Dojo.BDD
 {
     public class Panier
     {
-        public int NbPoire { get; private set; }
-        public int NbPomme { get; private set; }
+        public Dictionary<TypeDeFruit, int> Contenu { get; set; }
 
         public Panier()
         {
-            NbPoire = 0;
-            NbPomme = 0;
+            Contenu = new Dictionary<TypeDeFruit, int>();
         }
 
-        public void AjouterPoire(int nbPoire)
+        public void AjouterFruits(TypeDeFruit typeDeFruit, int nbFruits)
         {
-            NbPoire += nbPoire;
-        }
+            if (!Contenu.ContainsKey(typeDeFruit))
+            {
+                Contenu[typeDeFruit] = 0;
+            }
 
-        public void AjouterPomme(int nbPomme)
-        {
-            NbPomme += nbPomme;
-
+            Contenu[typeDeFruit] += nbFruits;
         }
     }
 }

@@ -10,27 +10,43 @@ namespace Dojo.BDD
 {
     public class CaisseEnregistreuse
     {
-        public int PrixPoire { get; set; }
-        public int PrixPomme { get; set; }
         public Panier Panier { get; set; }
 
         public int NbPoireAchetee { get; set; }
         public int NbPoireOfferte { get; set; }
+        public Dictionary<TypeDeFruit, int> PrixFruits { get; set; }
 
         public CaisseEnregistreuse()
         {
             Panier = new Panier();
+            PrixFruits = new Dictionary<TypeDeFruit, int>();
+
+            foreach (var typeDeFruit in Enum.GetValues(typeof(TypeDeFruit)))
+            {
+                PrixFruits[(TypeDeFruit)typeDeFruit] = 0;
+            }
+        }
+
+        public void SetPrixFruit(TypeDeFruit typeDeFruit, int prix)
+        {
+            PrixFruits[typeDeFruit] = prix;
         }
 
         public double CalculerPrixPanier()
         {
             if (NbPoireAchetee != 0)
             {
-                decimal d = Panier.NbPoire / NbPoireAchetee;
-                Panier.AjouterPoire(-NbPoireOfferte * (int)Math.Floor(d));
+                decimal d = Panier.Contenu[TypeDeFruit.Poire] / NbPoireAchetee;
+                Panier.AjouterFruits(TypeDeFruit.Poire, -NbPoireOfferte * (int)Math.Floor(d));
             }
 
-            return Panier.NbPoire * PrixPoire + Panier.NbPomme * PrixPomme;
+            int prixTotal = 0;
+            foreach (var fruits in Panier.Contenu)
+            {
+                prixTotal += fruits.Value * PrixFruits[fruits.Key];
+            }
+
+            return prixTotal;
         }
 
         public void AjouterPromoPoire(int nbPoireAchetee, int nbPoireOfferte)

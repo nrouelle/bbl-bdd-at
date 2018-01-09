@@ -17,26 +17,41 @@ namespace Dojo.BDD
         {
             Caisse = new CaisseEnregistreuse();
         }
-        
+
 
         [Given(@"1 poire vaut (.*)€")]
         public void GivenPoireVaut(int prixPoire)
         {
-            Caisse.PrixPoire = prixPoire;
-            
+            Caisse.SetPrixFruit(TypeDeFruit.Poire, prixPoire);
+
         }
-        
+
         [Given(@"1 pomme vaut (.*)€")]
         public void GivenPommeVaut(int prixPomme)
         {
-            Caisse.PrixPomme = prixPomme;
+            Caisse.SetPrixFruit(TypeDeFruit.Pomme, prixPomme);
         }
-        
+
+        [Given(@"1 banane vaut (.*)€")]
+        public void GivenBananeVaut(int prixBanane)
+        {
+            Caisse.SetPrixFruit(TypeDeFruit.Banane, prixBanane);
+        }
+
+        [When(@"Un client achète (.*) poires et (.*) pommes et (.*) bananes")]
+        public void WhenUnClientAchetePoiresEtPommesEtBananes(int nbPoire, int nbPomme, int nbBanane)
+        {
+            Caisse.Panier.AjouterFruits(TypeDeFruit.Poire, nbPoire);
+            Caisse.Panier.AjouterFruits(TypeDeFruit.Pomme, nbPomme);
+            Caisse.Panier.AjouterFruits(TypeDeFruit.Banane, nbBanane);
+        }
+
+
         [When(@"Un client achète (.*) poires et (.*) pommes")]
         public void WhenClientAchetePoireEtPommes(int nbPoire, int nbPomme)
         {
-            Caisse.Panier.AjouterPoire(nbPoire);
-            Caisse.Panier.AjouterPomme(nbPomme);
+            Caisse.Panier.AjouterFruits(TypeDeFruit.Poire, nbPoire);
+            Caisse.Panier.AjouterFruits(TypeDeFruit.Pomme, nbPomme);
         }
 
         [Then(@"il doit payer (.*)€")]

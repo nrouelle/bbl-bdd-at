@@ -7,6 +7,14 @@ And 1 pomme vaut 1€
 When Un client achète 1 poires et 2 pommes
 Then il doit payer 4€
 
+Scenario: achat simple avec des bananes
+Given j'ai une caisse enregistreuse
+Given 1 poire vaut 2€
+And 1 pomme vaut 1€
+And 1 banane vaut 3€
+When Un client achète 1 poires et 2 pommes et 3 bananes
+Then il doit payer 13€
+
 Scenario: Achat avec promotion
 Given j'ai une caisse enregistreuse
 And 1 poire vaut 2€
