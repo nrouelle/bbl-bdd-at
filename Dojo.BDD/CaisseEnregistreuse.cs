@@ -6,11 +6,11 @@ namespace Dojo.BDD
 {
     public class CaisseEnregistreuse
     {
-        public Panier Panier { get; set; }
+        public Panier Panier { get; }
 
         public int PromoNbPoireAchetee { get; set; }
         public int PromoNbPoireOfferte { get; set; }
-        public Dictionary<TypeDeFruit, int> PrixFruits { get; set; }
+        public Dictionary<TypeDeFruit, int> PrixFruits { get; }
 
         public bool EstPromo10Activee { get; set; }
 
