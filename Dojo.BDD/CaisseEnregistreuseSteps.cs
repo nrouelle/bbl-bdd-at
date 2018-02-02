@@ -66,5 +66,11 @@ namespace Dojo.BDD
             Caisse.AjouterPromoPoire(nbPoireAchetee, nbPoireOfferte);
         }
 
+        [Given(@"pour 10 produits achetes le plus cher est offert")]
+        public void GivenPourProduitsAchetesLePlusCherEstOffert()
+        {
+            Caisse.ActiverPromo10();
+        }
+
     }
 }

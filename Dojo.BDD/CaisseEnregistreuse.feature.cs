@@ -108,14 +108,14 @@ testRunner.Then("il doit payer 13€", ((string)(null)), ((TechTalk.SpecFlow.Tab
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Achat avec promotion")]
+        [NUnit.Framework.DescriptionAttribute("Promotion 4 poires achetées = 1 offerte")]
         [NUnit.Framework.TestCaseAttribute("1", "2", "4", null)]
         [NUnit.Framework.TestCaseAttribute("4", "2", "8", null)]
         [NUnit.Framework.TestCaseAttribute("6", "2", "12", null)]
         [NUnit.Framework.TestCaseAttribute("9", "2", "16", null)]
-        public virtual void AchatAvecPromotion(string nbPoires, string nbPommes, string total, string[] exampleTags)
+        public virtual void Promotion4PoiresAchetees1Offerte(string nbPoires, string nbPommes, string total, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Achat avec promotion", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Promotion 4 poires achetées = 1 offerte", exampleTags);
 #line 18
 this.ScenarioSetup(scenarioInfo);
 #line 19
@@ -129,6 +129,36 @@ testRunner.And("pour 4 poires achetées 1 poire offerte", ((string)(null)), ((Te
 #line 23
 testRunner.When(string.Format("Un client achète {0} poires et {1} pommes", nbPoires, nbPommes), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 24
+testRunner.Then(string.Format("il doit payer {0}€", total), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Promotion 10 produits acehtés le plus cher est offert")]
+        [NUnit.Framework.TestCaseAttribute("3", "6", "1", "12", null)]
+        [NUnit.Framework.TestCaseAttribute("4", "6", "0", "12", null)]
+        [NUnit.Framework.TestCaseAttribute("0", "10", "0", "9", null)]
+        [NUnit.Framework.TestCaseAttribute("3", "6", "2", "15", null)]
+        [NUnit.Framework.TestCaseAttribute("6", "6", "0", "16", null)]
+        public virtual void Promotion10ProduitsAcehtesLePlusCherEstOffert(string nbPoires, string nbPommes, string nbBananes, string total, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Promotion 10 produits acehtés le plus cher est offert", exampleTags);
+#line 33
+this.ScenarioSetup(scenarioInfo);
+#line 34
+testRunner.Given("j\'ai une caisse enregistreuse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 35
+testRunner.And("1 poire vaut 2€", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 36
+testRunner.And("1 pomme vaut 1€", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 37
+testRunner.And("1 banane vaut 3€", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 38
+testRunner.And("pour 10 produits achetes le plus cher est offert", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 39
+testRunner.When(string.Format("Un client achète {0} poires et {1} pommes et {2} bananes", nbPoires, nbPommes, nbBananes), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 40
 testRunner.Then(string.Format("il doit payer {0}€", total), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
