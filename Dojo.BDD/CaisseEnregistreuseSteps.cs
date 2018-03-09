@@ -65,13 +65,15 @@ namespace Dojo.BDD
         [Given(@"pour (.*) poires achetées (.*) poire offerte")]
         public void GivenPourPoiresAcheteesPoireOfferte(int nbPoireAchetee, int nbPoireOfferte)
         {
-            Caisse.AjouterPromoPoire(nbPoireAchetee, nbPoireOfferte);
+            var promoPoire = new PromoPoire(nbPoireAchetee, nbPoireOfferte);
+            Caisse.AjouterPromotion(promoPoire);
         }
 
         [Given(@"pour 10 produits achetes le plus cher est offert")]
         public void GivenPourProduitsAchetesLePlusCherEstOffert()
         {
-            Caisse.ActiverPromo10();
+            var promo10 = new Promo10();
+            Caisse.AjouterPromotion(promo10);
         }
 
     }
