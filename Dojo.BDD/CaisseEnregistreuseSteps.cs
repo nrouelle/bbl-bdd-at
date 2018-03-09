@@ -11,11 +11,13 @@ namespace Dojo.BDD
         private int nombrePoire;
 
         public CaisseEnregistreuse Caisse { get; private set; }
+        public Panier Panier { get; private set; }
 
         [Given(@"j'ai une caisse enregistreuse")]
         public void GivenJAiUneCaisseEnregistreuse()
         {
             Caisse = new CaisseEnregistreuse();
+            Panier = new Panier();
         }
 
 
@@ -41,23 +43,23 @@ namespace Dojo.BDD
         [When(@"Un client achète (.*) poires et (.*) pommes et (.*) bananes")]
         public void WhenUnClientAchetePoiresEtPommesEtBananes(int nbPoire, int nbPomme, int nbBanane)
         {
-            Caisse.Panier.AjouterFruits(TypeDeFruit.Poire, nbPoire);
-            Caisse.Panier.AjouterFruits(TypeDeFruit.Pomme, nbPomme);
-            Caisse.Panier.AjouterFruits(TypeDeFruit.Banane, nbBanane);
+            Panier.AjouterFruits(TypeDeFruit.Poire, nbPoire);
+            Panier.AjouterFruits(TypeDeFruit.Pomme, nbPomme);
+            Panier.AjouterFruits(TypeDeFruit.Banane, nbBanane);
         }
 
 
         [When(@"Un client achète (.*) poires et (.*) pommes")]
         public void WhenClientAchetePoireEtPommes(int nbPoire, int nbPomme)
         {
-            Caisse.Panier.AjouterFruits(TypeDeFruit.Poire, nbPoire);
-            Caisse.Panier.AjouterFruits(TypeDeFruit.Pomme, nbPomme);
+            Panier.AjouterFruits(TypeDeFruit.Poire, nbPoire);
+            Panier.AjouterFruits(TypeDeFruit.Pomme, nbPomme);
         }
 
         [Then(@"il doit payer (.*)€")]
         public void ThenIlDoitPayer(int montantTotal)
         {
-            Assert.AreEqual(montantTotal, Caisse.CalculerPrixPanier());
+            Assert.AreEqual(montantTotal, Caisse.CalculerPrixPanier(Panier));
         }
 
         [Given(@"pour (.*) poires achetées (.*) poire offerte")]

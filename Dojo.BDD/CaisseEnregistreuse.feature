@@ -30,7 +30,7 @@ Examples:
 | 6        | 2        | 12    |
 | 9        | 2        | 16    |
 
-Scenario Outline: Promotion 10 produits acehtés le plus cher est offert
+Scenario Outline: Promotion 10 produits achetés le plus cher est offert
 Given j'ai une caisse enregistreuse
 And 1 poire vaut 2€
 And 1 pomme vaut 1€

@@ -58,6 +58,8 @@
     <Compile Include="CaisseEnregistreuse.cs" />
     <Compile Include="ConfigFruit.cs" />
     <Compile Include="Panier.cs" />
+    <Compile Include="PromoPoire.cs" />
+    <Compile Include="IPromotion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

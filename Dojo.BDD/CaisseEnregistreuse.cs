@@ -6,7 +6,7 @@ namespace Dojo.BDD
 {
     public class CaisseEnregistreuse
     {
-        public Panier Panier { get; }
+        //public panier panier { get; }
 
         public int PromoNbPoireAchetee { get; set; }
         public int PromoNbPoireOfferte { get; set; }
@@ -16,9 +16,11 @@ namespace Dojo.BDD
 
         public bool EstPromoPoireOfferteActivee { get; set; }
 
+        private List<IPromotion> ListePromotions;
+
         public CaisseEnregistreuse()
         {
-            Panier = new Panier();
+            ListePromotions = new List<IPromotion>();
             PrixFruits = new Dictionary<TypeDeFruit, int>();
 
             foreach (var typeDeFruit in Enum.GetValues(typeof(TypeDeFruit)))
@@ -27,38 +29,41 @@ namespace Dojo.BDD
             }
         }
 
+        public void AjouterPromotion(IPromotion promotion)
+        {
+            this.ListePromotions.Add(promotion);
+        }
+
         public void SetPrixFruit(TypeDeFruit typeDeFruit, int prix)
         {
             PrixFruits[typeDeFruit] = prix;
         }
 
-        public double CalculerPrixPanier()
+        public double CalculerPrixPanier(Panier panier)
         {
             var remise = 0;
 
             var prixTotal = 0;
 
-            if (EstPromo10Activee && Panier.Contenu.Sum(f => f.Value) >= 10)
+            if (EstPromo10Activee && panier.Contenu.Sum(f => f.Value) >= 10)
             {
-                var typeFruit = RecupererFruitLePlusCher(Panier.Contenu);
+                var typeFruit = RecupererFruitLePlusCher(panier.Contenu);
                 remise += PrixFruits[typeFruit];
             }
-            else if (EstPromoPoireOfferteActivee)
+
+            foreach (var promotion in ListePromotions)
             {
-                decimal nombreDeFoisPromoAppliquee = Panier.Contenu[TypeDeFruit.Poire] / PromoNbPoireAchetee;
-
-                var nombrePoireOfferte = PromoNbPoireOfferte * (int)Math.Floor(nombreDeFoisPromoAppliquee);
-                remise += PrixFruits[TypeDeFruit.Poire] * nombrePoireOfferte;
+                remise += promotion.CalculerRemise(panier, PrixFruits);
             }
-
-            foreach (var fruits in Panier.Contenu)
+            
+            foreach (var fruits in panier.Contenu)
             {
                 prixTotal += fruits.Value * PrixFruits[fruits.Key];
             }
             
             return prixTotal - remise;
         }
-
+        
         private TypeDeFruit RecupererFruitLePlusCher(Dictionary<TypeDeFruit, int> panierContenu)
         {
             var panierOrdonne = panierContenu.Where(kv => kv.Value > 0).OrderBy(kv => PrixFruits[kv.Key]);
@@ -70,16 +75,15 @@ namespace Dojo.BDD
 
         public void AjouterPromoPoire(int nbPoireAchetee, int nbPoireOfferte)
         {
-            if (nbPoireAchetee <= 0) throw new ArgumentOutOfRangeException(nameof(nbPoireAchetee));
-
+            var promoPoire = new PromoPoire(nbPoireAchetee, nbPoireOfferte);
+            this.AjouterPromotion(promoPoire);
             EstPromoPoireOfferteActivee = true;
-            PromoNbPoireAchetee = nbPoireAchetee;
-            PromoNbPoireOfferte = nbPoireOfferte;
         }
 
 
         internal void ActiverPromo10()
         {
+            //this.AjouterPromotion();
             EstPromo10Activee = true;
         }
     }

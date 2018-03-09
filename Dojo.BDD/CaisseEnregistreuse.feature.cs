@@ -135,15 +135,15 @@ testRunner.Then(string.Format("il doit payer {0}€", total), ((string)(null)), 
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Promotion 10 produits acehtés le plus cher est offert")]
+        [NUnit.Framework.DescriptionAttribute("Promotion 10 produits achetés le plus cher est offert")]
         [NUnit.Framework.TestCaseAttribute("3", "6", "1", "12", null)]
         [NUnit.Framework.TestCaseAttribute("4", "6", "0", "12", null)]
         [NUnit.Framework.TestCaseAttribute("0", "10", "0", "9", null)]
         [NUnit.Framework.TestCaseAttribute("3", "6", "2", "15", null)]
         [NUnit.Framework.TestCaseAttribute("6", "6", "0", "16", null)]
-        public virtual void Promotion10ProduitsAcehtesLePlusCherEstOffert(string nbPoires, string nbPommes, string nbBananes, string total, string[] exampleTags)
+        public virtual void Promotion10ProduitsAchetesLePlusCherEstOffert(string nbPoires, string nbPommes, string nbBananes, string total, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Promotion 10 produits acehtés le plus cher est offert", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Promotion 10 produits achetés le plus cher est offert", exampleTags);
 #line 33
 this.ScenarioSetup(scenarioInfo);
 #line 34
