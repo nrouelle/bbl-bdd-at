@@ -83,3 +83,12 @@ And la livraison en Italie vaut 20€
 When Un client achète 6 poires et 2 pommes
 And Le client se fait livrer en Italie
 Then il doit payer 34€
+
+Scenario: achat avec livraisons multiples
+Given j'ai une caisse enregistreuse
+And j'ai 1 panier qui vaut 10€
+And la livraison en France vaut 10€
+And la livraison en Italie vaut 20€
+When Le client se fait livrer le panier en France
+And Le client se fait livrer le panier en Italie
+Then il doit payer 50€
