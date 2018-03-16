@@ -163,6 +163,88 @@ testRunner.Then(string.Format("il doit payer {0}€", total), ((string)(null)), 
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Promotion de Noel")]
+        [NUnit.Framework.TestCaseAttribute("5", "7.5", null)]
+        [NUnit.Framework.TestCaseAttribute("10", "15", null)]
+        [NUnit.Framework.TestCaseAttribute("11", "14.85", null)]
+        [NUnit.Framework.TestCaseAttribute("20", "27", null)]
+        public virtual void PromotionDeNoel(string nbMandarines, string total, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Promotion de Noel", exampleTags);
+#line 50
+this.ScenarioSetup(scenarioInfo);
+#line 51
+testRunner.Given("j\'ai une caisse enregistreuse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 52
+testRunner.And("1 poire vaut 2€", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 53
+testRunner.And("1 pomme vaut 1€", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 54
+testRunner.And("1 banane vaut 3€", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 55
+testRunner.And("1 mandarine vaut 1.5€", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 56
+testRunner.And("a partir de 10 mandarines achetées une remise de 10% est consentie sur les mandar" +
+                    "ines", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 57
+testRunner.When(string.Format("Un client achète {0} mandarines", nbMandarines), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 58
+testRunner.Then(string.Format("il doit payer {0}€", total), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("achat avec livraison")]
+        public virtual void AchatAvecLivraison()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("achat avec livraison", ((string[])(null)));
+#line 68
+this.ScenarioSetup(scenarioInfo);
+#line 69
+testRunner.Given("j\'ai une caisse enregistreuse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 70
+testRunner.And("1 poire vaut 2€", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 71
+testRunner.And("1 pomme vaut 1€", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 72
+testRunner.And("la livraison vaut 10€", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 73
+testRunner.When("Un client achète 6 poires et 2 pommes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 74
+testRunner.And("Le client se fait livrer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 75
+testRunner.Then("il doit payer 24€", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("achat avec livraison en Italie")]
+        public virtual void AchatAvecLivraisonEnItalie()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("achat avec livraison en Italie", ((string[])(null)));
+#line 78
+this.ScenarioSetup(scenarioInfo);
+#line 79
+testRunner.Given("j\'ai une caisse enregistreuse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 80
+testRunner.And("1 poire vaut 2€", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 81
+testRunner.And("1 pomme vaut 1€", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 82
+testRunner.And("la livraison en Italie vaut 20€", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 83
+testRunner.When("Un client achète 6 poires et 2 pommes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 84
+testRunner.And("Le client se fait livrer en Italie", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 85
+testRunner.Then("il doit payer 34€", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

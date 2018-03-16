@@ -59,6 +59,7 @@
     <Compile Include="ConfigFruit.cs" />
     <Compile Include="Panier.cs" />
     <Compile Include="Promo10.cs" />
+    <Compile Include="PromoNoel.cs" />
     <Compile Include="PromoPoire.cs" />
     <Compile Include="IPromotion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

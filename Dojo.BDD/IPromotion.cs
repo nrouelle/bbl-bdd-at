@@ -4,6 +4,6 @@ namespace Dojo.BDD
 {
     public interface IPromotion
     {
-        int CalculerRemise(Panier panier, Dictionary<TypeDeFruit, int> PrixFruits);
+        decimal CalculerRemise(Panier panier, Dictionary<TypeDeFruit, decimal> PrixFruits);
     }
 }

@@ -16,7 +16,7 @@ namespace Dojo.BDD
         public int NbPoireAchetee { get; }
         public int NbPoireOfferte { get; }
 
-        public int CalculerRemise(Panier panier, Dictionary<TypeDeFruit, int> PrixFruits)
+        public decimal CalculerRemise(Panier panier, Dictionary<TypeDeFruit, decimal> PrixFruits)
         {
             decimal nombreDeFoisPromoAppliquee = panier.Contenu[TypeDeFruit.Poire] / NbPoireAchetee;
 

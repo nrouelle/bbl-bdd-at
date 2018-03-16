@@ -7,9 +7,6 @@ namespace Dojo.BDD
     [Binding]
     public class CaisseEnregistreuseSteps
     {
-        private int prxPoire;
-        private int nombrePoire;
-
         public CaisseEnregistreuse Caisse { get; private set; }
         public Panier Panier { get; private set; }
 
@@ -22,20 +19,20 @@ namespace Dojo.BDD
 
 
         [Given(@"1 poire vaut (.*)€")]
-        public void GivenPoireVaut(int prixPoire)
+        public void GivenPoireVaut(decimal prixPoire)
         {
             Caisse.SetPrixFruit(TypeDeFruit.Poire, prixPoire);
 
         }
 
         [Given(@"1 pomme vaut (.*)€")]
-        public void GivenPommeVaut(int prixPomme)
+        public void GivenPommeVaut(decimal prixPomme)
         {
             Caisse.SetPrixFruit(TypeDeFruit.Pomme, prixPomme);
         }
 
         [Given(@"1 banane vaut (.*)€")]
-        public void GivenBananeVaut(int prixBanane)
+        public void GivenBananeVaut(decimal prixBanane)
         {
             Caisse.SetPrixFruit(TypeDeFruit.Banane, prixBanane);
         }
@@ -57,7 +54,7 @@ namespace Dojo.BDD
         }
 
         [Then(@"il doit payer (.*)€")]
-        public void ThenIlDoitPayer(int montantTotal)
+        public void ThenIlDoitPayer(decimal montantTotal)
         {
             Assert.AreEqual(montantTotal, Caisse.CalculerPrixPanier(Panier));
         }
@@ -74,6 +71,55 @@ namespace Dojo.BDD
         {
             var promo10 = new Promo10();
             Caisse.AjouterPromotion(promo10);
+        }
+        [Given(@"1 mandarine vaut (.*)€")]
+        public void GivenMandarineVaut(decimal prixMandarine)
+        {
+            Caisse.SetPrixFruit(TypeDeFruit.Mandarine, prixMandarine);
+        }
+
+        [Given(@"a partir de (.*) mandarines achetées une remise de (.*)% est consentie sur les mandarines")]
+        public void GivenAPartirDeMandarinesAcheteesUneRemiseDeEstConsentieSurLesMandarines(int nbMandarinesMinimumAchetees, int pourcentageRemise)
+        {
+            var promoDeNoel = new PromoNoel(nbMandarinesMinimumAchetees, (decimal)pourcentageRemise/100);
+            Caisse.AjouterPromotion(promoDeNoel);
+        }
+
+        [When(@"Un client achète (.*) mandarines")]
+        public void WhenUnClientAcheteMandarines(int nbMandarine)
+        {
+            Panier.AjouterFruits(TypeDeFruit.Mandarine, nbMandarine);
+        }
+
+        [Given(@"la livraison vaut (.*)€")]
+        public void GivenLaLivraisonVaut(decimal prixLivraison)
+        {
+            Caisse.DefinirTarifLivraison(prixLivraison);
+        }
+
+        [When(@"Le client se fait livrer")]
+        public void WhenLeClientSeFaitLivrer()
+        {
+            Caisse.DemandeLivraison();
+        }
+
+        [Given(@"la livraison en Italie vaut (.*)€")]
+        public void GivenLaLivraisonEnItalieVaut(decimal prixLivraison)
+        {
+            Caisse.DefinirTarifLivraison(prixLivraison);
+        }
+
+        [When(@"Le client se fait livrer en Italie")]
+        public void WhenLeClientSeFaitLivrerEnItalie()
+        {
+            Caisse.DemandeLivraison();
+        }
+
+
+        [StepArgumentTransformation(@"(\d*\.?\d*)€")]
+        public decimal PriceToDecimalTransform(string price)
+        {
+            return decimal.Parse(price);
         }
 
     }

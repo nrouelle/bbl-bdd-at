@@ -5,10 +5,10 @@ namespace Dojo.BDD
 {
     public class Promo10 : IPromotion
     {
-        private Dictionary<TypeDeFruit, int> PrixFruits;
+        private Dictionary<TypeDeFruit, decimal> PrixFruits;
         
 
-        public int CalculerRemise(Panier panier, Dictionary<TypeDeFruit, int> prixFruits)
+        public decimal CalculerRemise(Panier panier, Dictionary<TypeDeFruit, decimal> prixFruits)
         {
             PrixFruits = prixFruits;
             if (panier.Contenu.Sum(f => f.Value) >= 10)

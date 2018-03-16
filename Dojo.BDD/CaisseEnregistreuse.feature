@@ -46,3 +46,40 @@ Examples:
 | 0        | 10       | 0         | 9     |
 | 3        | 6        | 2         | 15    |
 | 6        | 6        | 0         | 16    |
+
+Scenario Outline: Promotion de Noel
+Given j'ai une caisse enregistreuse
+And 1 poire vaut 2€
+And 1 pomme vaut 1€
+And 1 banane vaut 3€
+And 1 mandarine vaut 1.5€
+And a partir de 10 mandarines achetées une remise de 10% est consentie sur les mandarines
+When Un client achète <nbMandarines> mandarines
+Then il doit payer <total>€
+
+Examples:
+| nbMandarines | total |
+| 5            | 7.5   |
+| 10           | 15    |
+| 11           | 14.85 |
+| 20           | 27    |
+
+
+Scenario: achat avec livraison
+Given j'ai une caisse enregistreuse
+And 1 poire vaut 2€
+And 1 pomme vaut 1€
+And la livraison vaut 10€
+When Un client achète 6 poires et 2 pommes
+And Le client se fait livrer
+Then il doit payer 24€
+
+
+Scenario: achat avec livraison en Italie
+Given j'ai une caisse enregistreuse
+And 1 poire vaut 2€
+And 1 pomme vaut 1€
+And la livraison en Italie vaut 20€
+When Un client achète 6 poires et 2 pommes
+And Le client se fait livrer en Italie
+Then il doit payer 34€

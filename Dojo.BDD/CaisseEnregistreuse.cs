@@ -6,14 +6,18 @@ namespace Dojo.BDD
 {
     public class CaisseEnregistreuse
     {
-        public Dictionary<TypeDeFruit, int> PrixFruits { get; }
+        public Dictionary<TypeDeFruit, decimal> PrixFruits { get; }
+
+        public decimal PrixLivraison { get; private set; }
 
         private List<IPromotion> ListePromotions;
+
+        private bool doitEtreLivrer;
 
         public CaisseEnregistreuse()
         {
             ListePromotions = new List<IPromotion>();
-            PrixFruits = new Dictionary<TypeDeFruit, int>();
+            PrixFruits = new Dictionary<TypeDeFruit, decimal>();
 
             foreach (var typeDeFruit in Enum.GetValues(typeof(TypeDeFruit)))
             {
@@ -26,15 +30,15 @@ namespace Dojo.BDD
             this.ListePromotions.Add(promotion);
         }
 
-        public void SetPrixFruit(TypeDeFruit typeDeFruit, int prix)
+        public void SetPrixFruit(TypeDeFruit typeDeFruit, decimal prix)
         {
             PrixFruits[typeDeFruit] = prix;
         }
 
-        public double CalculerPrixPanier(Panier panier)
+        public decimal CalculerPrixPanier(Panier panier)
         {
-            var remise = 0;
-            var prixTotal = 0;
+            decimal remise = 0;
+            decimal prixTotal = 0;
 
             foreach (var promotion in ListePromotions)
             {
@@ -45,8 +49,21 @@ namespace Dojo.BDD
             {
                 prixTotal += fruits.Value * PrixFruits[fruits.Key];
             }
-            
+
+            if (doitEtreLivrer)
+                prixTotal += PrixLivraison;
+
             return prixTotal - remise;
+        }
+
+        public void DefinirTarifLivraison(decimal prixLivraison)
+        {
+            this.PrixLivraison = prixLivraison;
+        }
+
+        public void DemandeLivraison()
+        {
+            this.doitEtreLivrer = true;
         }
     }
 }

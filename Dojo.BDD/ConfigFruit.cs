@@ -4,6 +4,7 @@ namespace Dojo.BDD
     {
         Banane,
         Pomme,
-        Poire
+        Poire,
+        Mandarine
     }
 }
