@@ -90,37 +90,30 @@ namespace Dojo.BDD
         {
             Panier.AjouterFruits(TypeDeFruit.Mandarine, nbMandarine);
         }
-
-        [Given(@"la livraison vaut (.*)€")]
-        public void GivenLaLivraisonVaut(decimal prixLivraison)
+        
+        [When(@"Le client se fait livrer en (.*)")]
+        public void WhenLeClientSeFaitLivrerEn(string paysLivraison)
         {
-            Caisse.DefinirTarifLivraison(prixLivraison);
+            Caisse.DemandeLivraison(paysLivraison);
         }
 
-        [When(@"Le client se fait livrer")]
-        public void WhenLeClientSeFaitLivrer()
+        [Given(@"j'ai un panier qui vaut (.*)€")]
+        public void GivenJAiUnPanierQuiVaut(decimal prixPanier)
         {
-            Caisse.DemandeLivraison();
+            ScenarioContext.Current.Pending();
         }
 
-        [Given(@"la livraison en Italie vaut (.*)€")]
-        public void GivenLaLivraisonEnItalieVaut(decimal prixLivraison)
+        [Given(@"la livraison en (.*) vaut (.*)€")]
+        public void GivenLaLivraisonEnVaut(string paysLivraison, decimal prixLivraison)
         {
-            Caisse.DefinirTarifLivraison(prixLivraison);
-        }
+            Caisse.DefinirTarifLivraison(paysLivraison, prixLivraison);
 
-        [When(@"Le client se fait livrer en Italie")]
-        public void WhenLeClientSeFaitLivrerEnItalie()
-        {
-            Caisse.DemandeLivraison();
         }
-
 
         [StepArgumentTransformation(@"(\d*\.?\d*)€")]
         public decimal PriceToDecimalTransform(string price)
         {
             return decimal.Parse(price);
         }
-
     }
 }

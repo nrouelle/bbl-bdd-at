@@ -56,12 +56,12 @@ namespace Dojo.BDD
             return prixTotal - remise;
         }
 
-        public void DefinirTarifLivraison(decimal prixLivraison)
+        public void DefinirTarifLivraison(string paysDeLivraison, decimal prixLivraison)
         {
             this.PrixLivraison = prixLivraison;
         }
 
-        public void DemandeLivraison()
+        public void DemandeLivraison(string paysDeLivraison)
         {
             this.doitEtreLivrer = true;
         }

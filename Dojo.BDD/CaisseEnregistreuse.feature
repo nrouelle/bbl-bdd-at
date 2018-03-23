@@ -69,9 +69,9 @@ Scenario: achat avec livraison
 Given j'ai une caisse enregistreuse
 And 1 poire vaut 2€
 And 1 pomme vaut 1€
-And la livraison vaut 10€
+And la livraison en France vaut 10€
 When Un client achète 6 poires et 2 pommes
-And Le client se fait livrer
+And Le client se fait livrer en France
 Then il doit payer 24€
 
 
@@ -86,9 +86,17 @@ Then il doit payer 34€
 
 Scenario: achat avec livraisons multiples
 Given j'ai une caisse enregistreuse
-And j'ai 1 panier qui vaut 10€
+And j'ai un panier qui vaut 10€
 And la livraison en France vaut 10€
 And la livraison en Italie vaut 20€
-When Le client se fait livrer le panier en France
-And Le client se fait livrer le panier en Italie
+When Le client se fait livrer en France
+And Le client se fait livrer en Italie
 Then il doit payer 50€
+
+@PanierParDefaut
+Context:
+Given j'ai une caisse enregistreuse
+Given 1 poire vaut 2€
+And 1 pomme vaut 1€
+And 1 banane vaut 3€
+And Un client achète 1 poires et 2 pommes et 3 bananes
