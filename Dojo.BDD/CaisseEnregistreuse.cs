@@ -9,6 +9,11 @@ namespace Dojo.BDD
         public Dictionary<TypeDeFruit, decimal> PrixFruits { get; }
 
         private Dictionary<string, decimal> _prixLivraisons = null;
+
+        private List<IPromotion> ListePromotions;
+
+        private string paysDeLivraison;
+
         public Dictionary<string, decimal> PrixLivraisons
         {
             get
@@ -19,10 +24,6 @@ namespace Dojo.BDD
                 return _prixLivraisons;
             }
         }
-
-        private List<IPromotion> ListePromotions;
-
-        private string paysDeLivraison;
 
         public CaisseEnregistreuse()
         {

@@ -57,6 +57,11 @@
     <Compile Include="CaisseEnregistreuseSteps.cs" />
     <Compile Include="CaisseEnregistreuse.cs" />
     <Compile Include="ConfigFruit.cs" />
+    <Compile Include="Livraison.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Livraison.feature</DependentUpon>
+    </Compile>
     <Compile Include="Panier.cs" />
     <Compile Include="Promo10.cs" />
     <Compile Include="PromoNoel.cs" />
@@ -69,6 +74,10 @@
     <None Include="CaisseEnregistreuse.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CaisseEnregistreuse.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Livraison.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Livraison.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
