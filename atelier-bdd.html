@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Présentation BDD</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# Atelier BDD
+## Behaviour Driven Development
+
+---
+
+# Agenda
+
+1. Introduction
+2. Objectifs
+2. Exercices
+3. Rétrospectives
+
+---
+
+# Introduction
+
+---
+
+# Objectifs
+
+* Meilleure collaboration Devs / Métier / PO
+* Approche DDD
+* Ubiquitous Language
+* Tests par l'exemple
+
+---
+
+# Exercices : Fruit Shop
+Pour l'exemple, nous allons gérer la caisse enregistreuse d'un marchand de fruit
+
+---
+
+# Tarif normal
+* 1 pomme vaut 1€
+* 1 poire vaut 2€
+
+=> Si un client achète 2 pommes et 1 poire, il doit payer 4€
+
+---
+
+# Nouveau produit
+* 1 banane vaut 3€
+
+=> Si un client achète 2 pommes, 1 poire et 3 bananes, il doit payer 13€
+
+---
+# 1 gratuit pour 3 achetés (3 = 4)
+* Pour 3 poires achetés, 1 est offerte
+
+=> Si un client achète 2 pommes et 4 poires, il doit payer 8€
+
+=> Si un client achète 2 pommes et 6 poires, il doit payer 12€
+
+---
+# 10 produits achetés, le plus cher est offert
+
+=> Si un client achète 6 pommes, 3 poires et 1 banane alors la banane est offerte
+
+=> Si un client achète 6 pommes, 4 poires alors la poire est offerte
+
+=> Si un client achète 10 pommes alors 1 pomme est offerte
+
+=> Si un client achète 6 pommes, 3 poires et 2 banane alors une banane est offerte
+
+=> Si un client achète 6 pommes, 6 poires alors une poire est offerte
+
+**=> Cette promotion n'est pas cumulable avec le 3 = 4 poires**
+
+---
+# Promotions de Noel
+
+Durant le mois de Décembre, une promotion est appliquée sur les mandarines.
+A partir de 10 mandarines achetées une remise de 10% est consentie sur les mandarines.
+
+=> Si le client achète 5 mandarines, il va payer 7,5€
+
+=> Si le client achète 10 mandarines, il va payer 15€
+
+=> Si le client achète 11 mandarines, il va payer 14,85€
+
+=> Si le client achète 20 mandarines à 1,5€, il devra payer 27€
+
+---
+# Frais de livraison
+
+* La livraison coûte 10€
+
+=> Si mon client achète 2 pommes et 6 poires et se fait livrer, il doit payer 24€
+
+---
+# Frais de livraison en Italie
+
+Le client veut se faire livrer en Italie
+
+* Pour l'Italie, le coût de la livraison est de 20€
+
+=> Si le client achète 2 pommes et 6 poires et se fait livrer, il doit payer 32€
+
+---
+# Frais de livraison en Espagne
+
+Le client veut se faire livrer en Espagne
+
+* Pour l'Espagne, le coût de la livraison est de 20€ + 10% de la commande (hors frais de livraison)
+
+=> Si le client achète 2 pommes et 6 poires et se fait livrer, il doit payer 33,2€
+
+---
+# Ajout de plein de fruits/prix
+
+On charge les données d'une caisse enregistreuse depuis un fichier Json et on doit tester des combinaisons de panier
+
+???
+Prévoir des scenarios exemples en avance
+---
+# Affichage d'alerte en caisse
+
+Si un client passe en caisse avec un panier contenant 3 poires
+Et que la promo 3 = 4 poires est en cours
+Afficher un message pour prévenir le client qu'il peut prendre une poire de plus pour le même prix !!!
+
+---
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>

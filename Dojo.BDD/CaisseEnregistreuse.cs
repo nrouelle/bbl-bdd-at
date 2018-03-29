@@ -8,11 +8,21 @@ namespace Dojo.BDD
     {
         public Dictionary<TypeDeFruit, decimal> PrixFruits { get; }
 
-        public decimal PrixLivraison { get; private set; }
+        private Dictionary<string, decimal> _prixLivraisons = null;
+        public Dictionary<string, decimal> PrixLivraisons
+        {
+            get
+            {
+                if(_prixLivraisons == null)
+                    _prixLivraisons = new Dictionary<string, decimal>();
+
+                return _prixLivraisons;
+            }
+        }
 
         private List<IPromotion> ListePromotions;
 
-        private bool doitEtreLivrer;
+        private string paysDeLivraison;
 
         public CaisseEnregistreuse()
         {
@@ -50,20 +60,22 @@ namespace Dojo.BDD
                 prixTotal += fruits.Value * PrixFruits[fruits.Key];
             }
 
-            if (doitEtreLivrer)
-                prixTotal += PrixLivraison;
+            if (!string.IsNullOrEmpty(paysDeLivraison))
+                prixTotal += PrixLivraisons[paysDeLivraison];
 
             return prixTotal - remise;
         }
 
         public void DefinirTarifLivraison(string paysDeLivraison, decimal prixLivraison)
         {
-            this.PrixLivraison = prixLivraison;
+            this.PrixLivraisons[paysDeLivraison] = prixLivraison;
         }
 
         public void DemandeLivraison(string paysDeLivraison)
         {
-            this.doitEtreLivrer = true;
+            if (!this.PrixLivraisons.ContainsKey(paysDeLivraison))
+                throw new Exception($"La livraison en {paysDeLivraison} est impossible.");
+            this.paysDeLivraison = paysDeLivraison;
         }
     }
 }

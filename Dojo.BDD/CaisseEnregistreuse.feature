@@ -84,19 +84,26 @@ When Un client achète 6 poires et 2 pommes
 And Le client se fait livrer en Italie
 Then il doit payer 34€
 
-Scenario: achat avec livraisons multiples
-Given j'ai une caisse enregistreuse
-And j'ai un panier qui vaut 10€
-And la livraison en France vaut 10€
+@Panier10euros @CaisseEnregistreuseParDefaut
+Scenario Outline: achat avec livraisons multiples
+Given la livraison en France vaut 10€
 And la livraison en Italie vaut 20€
-When Le client se fait livrer en France
-And Le client se fait livrer en Italie
-Then il doit payer 50€
+When Le client se fait livrer en <pays>
+Then il doit payer <prixTotal>€
 
-@PanierParDefaut
-Context:
-Given j'ai une caisse enregistreuse
-Given 1 poire vaut 2€
-And 1 pomme vaut 1€
-And 1 banane vaut 3€
-And Un client achète 1 poires et 2 pommes et 3 bananes
+Examples: 
+| pays   | prixTotal |
+| France | 20        |
+| Italie | 30        |
+
+@Panier10euros @CaisseEnregistreuseParDefaut
+Scenario: achat avec livraisons dans un pays inconnu 
+Given la livraison en France vaut 10€
+And la livraison en Italie vaut 20€
+When La livraison n'est pas possible en Roumanie
+Then La livraison est impossible en Roumanie
+
+##Context:
+#Given j'ai une caisse enregistreuse
+#Given j'ai un panier par défaut qui vaut 10€
+#And Un client achète 1 poires et 2 pommes et 3 bananes
