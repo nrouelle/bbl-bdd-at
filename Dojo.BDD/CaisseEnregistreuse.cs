@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Dojo.BDD
 {
@@ -10,7 +9,7 @@ namespace Dojo.BDD
 
         private Dictionary<string, decimal> _prixLivraisons = null;
 
-        private List<IPromotion> ListePromotions;
+        private readonly List<IPromotion> _listePromotions;
 
         private string paysDeLivraison;
 
@@ -27,7 +26,7 @@ namespace Dojo.BDD
 
         public CaisseEnregistreuse()
         {
-            ListePromotions = new List<IPromotion>();
+            _listePromotions = new List<IPromotion>();
             PrixFruits = new Dictionary<TypeDeFruit, decimal>();
 
             foreach (var typeDeFruit in Enum.GetValues(typeof(TypeDeFruit)))
@@ -38,7 +37,7 @@ namespace Dojo.BDD
 
         public void AjouterPromotion(IPromotion promotion)
         {
-            this.ListePromotions.Add(promotion);
+            this._listePromotions.Add(promotion);
         }
 
         public void SetPrixFruit(TypeDeFruit typeDeFruit, decimal prix)
@@ -51,7 +50,7 @@ namespace Dojo.BDD
             decimal remise = 0;
             decimal prixTotal = 0;
 
-            foreach (var promotion in ListePromotions)
+            foreach (var promotion in _listePromotions)
             {
                 remise += promotion.CalculerRemise(panier, PrixFruits);
             }
