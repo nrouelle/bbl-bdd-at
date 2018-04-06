@@ -65,15 +65,17 @@ namespace Dojo.BDD
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("achat avec livraison")]
+        [NUnit.Framework.CategoryAttribute("Panier14euros")]
+        [NUnit.Framework.CategoryAttribute("CaisseEnregistreuseParDefaut")]
         public virtual void AchatAvecLivraison()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("achat avec livraison", ((string[])(null)));
-#line 3
-this.ScenarioSetup(scenarioInfo);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("achat avec livraison", new string[] {
+                        "Panier14euros",
+                        "CaisseEnregistreuseParDefaut"});
 #line 4
-testRunner.Given("j\'ai un panier qui vaut 14€", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 5
-testRunner.And("la livraison en France vaut 10€", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.Given("la livraison en France vaut 10€", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 6
 testRunner.When("Le client se fait livrer en France", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 7
@@ -84,18 +86,20 @@ testRunner.Then("il doit payer 24€", ((string)(null)), ((TechTalk.SpecFlow.Tab
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("achat avec livraison en Italie")]
+        [NUnit.Framework.CategoryAttribute("Panier14euros")]
+        [NUnit.Framework.CategoryAttribute("CaisseEnregistreuseParDefaut")]
         public virtual void AchatAvecLivraisonEnItalie()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("achat avec livraison en Italie", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("achat avec livraison en Italie", new string[] {
+                        "Panier14euros",
+                        "CaisseEnregistreuseParDefaut"});
 #line 10
 this.ScenarioSetup(scenarioInfo);
 #line 11
-testRunner.Given("j\'ai un panier qui vaut 14€", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given("la livraison en Italie vaut 20€", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 12
-testRunner.And("la livraison en Italie vaut 20€", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 13
 testRunner.When("Le client se fait livrer en Italie", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 14
+#line 13
 testRunner.Then("il doit payer 34€", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -117,15 +121,15 @@ testRunner.Then("il doit payer 34€", ((string)(null)), ((TechTalk.SpecFlow.Tab
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("achat avec livraisons multiples", @__tags);
-#line 17
+#line 16
 this.ScenarioSetup(scenarioInfo);
-#line 18
+#line 17
 testRunner.Given("la livraison en France vaut 10€", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 19
+#line 18
 testRunner.And("la livraison en Italie vaut 20€", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 20
+#line 19
 testRunner.When(string.Format("Le client se fait livrer en {0}", pays), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 21
+#line 20
 testRunner.Then(string.Format("il doit payer {0}€", prixTotal), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -140,15 +144,15 @@ testRunner.Then(string.Format("il doit payer {0}€", prixTotal), ((string)(null
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("achat avec livraisons dans un pays inconnu", new string[] {
                         "Panier10euros",
                         "CaisseEnregistreuseParDefaut"});
-#line 29
+#line 28
 this.ScenarioSetup(scenarioInfo);
-#line 30
+#line 29
 testRunner.Given("la livraison en France vaut 10€", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 31
+#line 30
 testRunner.And("la livraison en Italie vaut 20€", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 32
+#line 31
 testRunner.When("La livraison n\'est pas possible en Roumanie", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 33
+#line 32
 testRunner.Then("La livraison est impossible en Roumanie", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

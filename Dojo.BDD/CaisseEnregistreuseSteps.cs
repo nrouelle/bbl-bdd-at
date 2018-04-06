@@ -17,6 +17,16 @@ namespace Dojo.BDD
             Panier.AjouterFruits(TypeDeFruit.Banane, 2);
         }
 
+        [BeforeScenario("Panier14euros", Order = 1)]
+        public void Panier14Euros()
+        {
+            Panier = new Panier();
+
+            Panier.AjouterFruits(TypeDeFruit.Poire, 3);
+            Panier.AjouterFruits(TypeDeFruit.Pomme, 2);
+            Panier.AjouterFruits(TypeDeFruit.Banane, 2);
+        }
+
         [BeforeScenario("CaisseEnregistreuseParDefaut", Order=0)]
         public void CaisseEnregistreuseParDefaut()
         {

@@ -1,15 +1,14 @@
 ﻿Feature: Livraison
-	
+
+@Panier14euros @CaisseEnregistreuseParDefaut
 Scenario: achat avec livraison
-Given j'ai un panier qui vaut 14€
-And la livraison en France vaut 10€
+Given la livraison en France vaut 10€
 When Le client se fait livrer en France
 Then il doit payer 24€
 
-
+@Panier14euros @CaisseEnregistreuseParDefaut
 Scenario: achat avec livraison en Italie
-Given j'ai un panier qui vaut 14€
-And la livraison en Italie vaut 20€
+Given la livraison en Italie vaut 20€
 When Le client se fait livrer en Italie
 Then il doit payer 34€
 
