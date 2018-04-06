@@ -27,7 +27,7 @@ namespace Dojo.BDD.Test
             [Test]
             public void NotThrowWhenSetPrixFruit()
             {
-                caisse.SetPrixFruit((TypeDeFruit)8, 0);
+                caisse.SetPrixFruit(TypeDeFruit.Banane, 0);
             }
 
             [Test]
