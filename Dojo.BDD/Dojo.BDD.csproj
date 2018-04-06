@@ -64,6 +64,7 @@
     </Compile>
     <Compile Include="LivraisonSteps.cs" />
     <Compile Include="Panier.cs" />
+    <Compile Include="Exceptions\PanierNullException.cs" />
     <Compile Include="Promo10.cs" />
     <Compile Include="PromoNoel.cs" />
     <Compile Include="PromoPoire.cs" />

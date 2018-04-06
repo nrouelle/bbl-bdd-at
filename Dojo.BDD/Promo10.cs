@@ -5,16 +5,16 @@ namespace Dojo.BDD
 {
     public class Promo10 : IPromotion
     {
-        private Dictionary<TypeDeFruit, decimal> PrixFruits;
+        private Dictionary<TypeDeFruit, decimal> _prixFruits;
         
 
         public decimal CalculerRemise(Panier panier, Dictionary<TypeDeFruit, decimal> prixFruits)
         {
-            PrixFruits = prixFruits;
+            _prixFruits = prixFruits;
             if (panier.Contenu.Sum(f => f.Value) >= 10)
             {
                 var typeFruit = RecupererFruitLePlusCher(panier.Contenu);
-                return PrixFruits[typeFruit];
+                return _prixFruits[typeFruit];
             }
 
             return 0;
@@ -22,7 +22,7 @@ namespace Dojo.BDD
 
         private TypeDeFruit RecupererFruitLePlusCher(Dictionary<TypeDeFruit, int> panierContenu)
         {
-            var panierOrdonne = panierContenu.Where(kv => kv.Value > 0).OrderBy(kv => PrixFruits[kv.Key]);
+            var panierOrdonne = panierContenu.Where(kv => kv.Value > 0).OrderBy(kv => _prixFruits[kv.Key]);
 
             var fruitLePlusCher = panierOrdonne.Last();
 

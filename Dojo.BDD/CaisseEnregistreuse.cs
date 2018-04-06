@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Dojo.BDD.Exceptions;
 
 namespace Dojo.BDD
 {
@@ -55,6 +56,11 @@ namespace Dojo.BDD
 
         public decimal CalculerPrixPanier(Panier panier)
         {
+            if (panier == null)
+            {
+                throw new PanierNullException();
+            }
+
             decimal remise = 0;
             decimal prixTotal = 0;
 

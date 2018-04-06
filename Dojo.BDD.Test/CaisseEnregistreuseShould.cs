@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Dojo.BDD.Exceptions;
 using Moq;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
@@ -9,11 +10,17 @@ namespace Dojo.BDD.Test
     [TestFixture]
     public class CaisseEnregistreuseShould
     {
-        private readonly CaisseEnregistreuse caisse = new CaisseEnregistreuse();
+        private CaisseEnregistreuse caisse;
+
+        [SetUp]
+        public void Init()
+        {
+            caisse = new CaisseEnregistreuse();
+        }
 
         [TestFixture]
         public class AjouterPromotionShould : CaisseEnregistreuseShould
-        { 
+        {
             [Test]
             public void NotThrowWhenAddNewIPromotion()
             {
@@ -34,7 +41,7 @@ namespace Dojo.BDD.Test
             [Test]
             public void ThrowWhenSetPrixForNonExistingFruit()
             {
-                Assert.Throws<Exception>(() =>  caisse.SetPrixFruit((TypeDeFruit)8, 0));
+                Assert.Throws<Exception>(() => caisse.SetPrixFruit((TypeDeFruit)8, 0));
             }
         }
 
@@ -74,6 +81,13 @@ namespace Dojo.BDD.Test
                 caisse.SetPrixFruit(TypeDeFruit.Banane, prixBanane);
                 panier.AjouterFruits(TypeDeFruit.Banane, 1);
                 Assert.AreEqual(prixBanane - remise, caisse.CalculerPrixPanier(panier));
+            }
+
+            [Test]
+            public void ThrowIfPanierNull()
+            {
+                Panier panier = null;
+                Assert.Throws<PanierNullException>(() => caisse.CalculerPrixPanier(panier));
             }
         }
     }
