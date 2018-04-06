@@ -62,6 +62,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Livraison.feature</DependentUpon>
     </Compile>
+    <Compile Include="LivraisonSteps.cs" />
     <Compile Include="Panier.cs" />
     <Compile Include="Promo10.cs" />
     <Compile Include="PromoNoel.cs" />

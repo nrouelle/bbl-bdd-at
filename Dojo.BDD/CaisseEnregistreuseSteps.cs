@@ -8,36 +8,6 @@ namespace Dojo.BDD
     [Scope(Feature = "CaisseEnregistreuse")]
     public class CaisseEnregistreuseSteps
     {
-        [BeforeScenario("Panier10euros", Order = 1)]
-        public void Panier10Euros()
-        {
-            Panier = new Panier();
-
-            Panier.AjouterFruits(TypeDeFruit.Poire, 1);
-            Panier.AjouterFruits(TypeDeFruit.Pomme, 2);
-            Panier.AjouterFruits(TypeDeFruit.Banane, 2);
-        }
-
-        [BeforeScenario("Panier14euros", Order = 1)]
-        public void Panier14Euros()
-        {
-            Panier = new Panier();
-
-            Panier.AjouterFruits(TypeDeFruit.Poire, 3);
-            Panier.AjouterFruits(TypeDeFruit.Pomme, 2);
-            Panier.AjouterFruits(TypeDeFruit.Banane, 2);
-        }
-
-        [BeforeScenario("CaisseEnregistreuseParDefaut", Order=0)]
-        public void CaisseEnregistreuseParDefaut()
-        {
-            Caisse = new CaisseEnregistreuse();
-
-            Caisse.SetPrixFruit(TypeDeFruit.Pomme, 1);
-            Caisse.SetPrixFruit(TypeDeFruit.Poire, 2);
-            Caisse.SetPrixFruit(TypeDeFruit.Banane, 3);
-        }
-
         public CaisseEnregistreuse Caisse { get; private set; }
         public Panier Panier { get; private set; }
 
@@ -121,29 +91,7 @@ namespace Dojo.BDD
             Panier.AjouterFruits(TypeDeFruit.Mandarine, nbMandarine);
         }
         
-        [When(@"Le client se fait livrer en (.*)")]
-        public void WhenLeClientSeFaitLivrerEn(string paysLivraison)
-        {
-            Caisse.DemandeLivraison(paysLivraison);
-        }
         
-        [Given(@"la livraison en (.*) vaut (.*)€")]
-        public void GivenLaLivraisonEnVaut(string paysLivraison, decimal prixLivraison)
-        {
-            Caisse.DefinirTarifLivraison(paysLivraison, prixLivraison);
-        }
-
-        [When(@"La livraison n'est pas possible en (.*)")]
-        public void WhenLeClientSeFaitLivrerDansUnPaysInterditEn(string paysLivraison)
-        {
-            Caisse.PrixLivraisons.Remove(paysLivraison);
-        }
-
-        [Then(@"La livraison est impossible en (.*)")]
-        public void ThenLaLivraisonEstImpossible(string paysLivraison)
-        {
-            Assert.Throws<Exception>(() => Caisse.DemandeLivraison(paysLivraison));
-        }
 
         [StepArgumentTransformation(@"(\d*\.?\d*)€")]
         public decimal PriceToDecimalTransform(string price)
