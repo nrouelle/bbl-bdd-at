@@ -5,6 +5,7 @@ using TechTalk.SpecFlow;
 namespace Dojo.BDD
 {
     [Binding]
+    [Scope(Feature = "CaisseEnregistreuse")]
     public class CaisseEnregistreuseSteps
     {
         [BeforeScenario("Panier10euros", Order = 1)]
