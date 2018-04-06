@@ -5,6 +5,7 @@ using TechTalk.SpecFlow;
 namespace Dojo.BDD
 {
     [Binding]
+    [Scope(Feature = "Livraison")]
     public class LivraisonSteps
     {
         public CaisseEnregistreuse Caisse { get; private set; }
