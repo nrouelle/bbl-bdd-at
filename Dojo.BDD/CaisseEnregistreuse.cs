@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Dojo.BDD
 {
     public class CaisseEnregistreuse
     {
-        public Dictionary<TypeDeFruit, decimal> PrixFruits { get; }
+        private Dictionary<TypeDeFruit, decimal> PrixFruits { get; }
 
         private Dictionary<string, decimal> _prixLivraisons = null;
 
@@ -42,6 +43,13 @@ namespace Dojo.BDD
 
         public void SetPrixFruit(TypeDeFruit typeDeFruit, decimal prix)
         {
+            var maxFruit = Enum.GetValues(typeof(TypeDeFruit)).Cast<TypeDeFruit>().Max();
+
+            if ((int) typeDeFruit > (int)maxFruit)
+            {
+                throw new Exception("Type de fruit non supporté");
+            }
+
             PrixFruits[typeDeFruit] = prix;
         }
 
