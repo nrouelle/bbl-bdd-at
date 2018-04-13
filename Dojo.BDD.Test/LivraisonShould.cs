@@ -19,7 +19,11 @@ namespace Dojo.BDD.Test
             public void SetPrixLivraisonPourUnPays()
             {
                 var livraison = new Livraison();
-                Assert.DoesNotThrow(() => livraison.SetPrix("France", 10));
+                decimal prix = 10;
+                var pays = "France";
+
+                livraison.SetPrix(pays, prix);
+                Assert.AreEqual(livraison.GetPrix(pays), prix);
             }
         }
     }
