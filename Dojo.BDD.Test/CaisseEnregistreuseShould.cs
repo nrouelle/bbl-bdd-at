@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Dojo.BDD.Exceptions;
 using Moq;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 
 namespace Dojo.BDD.Test
 {
@@ -59,10 +58,15 @@ namespace Dojo.BDD.Test
             public void ReturnPrixPanier()
             {
                 var prixBanane = 3;
+                var prixPoire = 5;
                 var panier = new Panier();
                 caisse.SetPrixFruit(TypeDeFruit.Banane, prixBanane);
+                caisse.SetPrixFruit(TypeDeFruit.Poire, prixPoire);
+
                 panier.AjouterFruits(TypeDeFruit.Banane, 1);
-                Assert.AreEqual(prixBanane, caisse.CalculerPrixPanier(panier));
+                panier.AjouterFruits(TypeDeFruit.Poire, 1);
+
+                Assert.AreEqual(prixBanane + prixPoire, caisse.CalculerPrixPanier(panier));
             }
 
             [Test]
@@ -88,6 +92,50 @@ namespace Dojo.BDD.Test
             {
                 Panier panier = null;
                 Assert.Throws<PanierNullException>(() => caisse.CalculerPrixPanier(panier));
+            }
+        }
+
+        [TestFixture]
+        public class DemandeLivraisonShould : CaisseEnregistreuseShould
+        {
+            [Test]
+            public void NotThrowPaysLivraisonExiste()
+            {
+                var paysLivraison = "France";
+               caisse.DefinirTarifLivraison(paysLivraison, 10);
+                caisse.DemandeLivraison(paysLivraison);
+            }
+
+            [Test]
+            public void ThrowWhenPaysLivraisonInexistant()
+            {
+                var paysFactice = "Abcdefghijklmnopqrstuvwxyz";
+                Assert.Throws<Exception>(() => caisse.DemandeLivraison(paysFactice), $"La livraison en {paysFactice} est impossible.");
+            }
+        }
+
+        [TestFixture]
+        public class DefinirTarifLivraisonShould : CaisseEnregistreuseShould
+        {
+            [Test]
+            public void HaveTarifLivraisonWhenSetPaysLivraison()
+            {
+                var paysLivraison = "France";
+                caisse.DefinirTarifLivraison(paysLivraison, 10);
+                Assert.IsTrue(caisse.PrixLivraisons.ContainsKey(paysLivraison));
+            }
+            [Test]
+            public void HaveTarifLivraisonTo10WhenSetPaysLivraison()
+            {
+                var paysLivraison = "France";
+                caisse.DefinirTarifLivraison(paysLivraison, 10);
+                Assert.AreEqual(caisse.PrixLivraisons[paysLivraison], 10);
+            }
+            [Test]
+            public void ThrowIfPaysLivraisonEmpty()
+            {
+                var paysLivraison = "";
+                Assert.Throws<Exception>(() => caisse.DefinirTarifLivraison(paysLivraison, 10));
             }
         }
     }

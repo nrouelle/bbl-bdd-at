@@ -82,6 +82,10 @@ namespace Dojo.BDD
 
         public void DefinirTarifLivraison(string paysDeLivraison, decimal prixLivraison)
         {
+            if (string.IsNullOrEmpty(paysDeLivraison))
+            {
+                throw new Exception();
+            }
             this.PrixLivraisons[paysDeLivraison] = prixLivraison;
         }
 
