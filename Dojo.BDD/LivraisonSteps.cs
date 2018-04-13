@@ -11,8 +11,8 @@ namespace Dojo.BDD
         public CaisseEnregistreuse Caisse { get; private set; }
         public Panier Panier { get; private set; }
 
-        [BeforeScenario("Panier10euros", Order = 1)]
-        public void Panier10Euros()
+        [Given(@"j'ai un panier de 10 euros")]
+        public void GivenJAiUnPanierDe10Euros()
         {
             Panier = new Panier();
 
@@ -21,8 +21,8 @@ namespace Dojo.BDD
             Panier.AjouterFruits(TypeDeFruit.Banane, 2);
         }
 
-        [BeforeScenario("Panier14euros", Order = 1)]
-        public void Panier14Euros()
+        [Given(@"j'ai un panier de 14 euros")]
+        public void GivenJAiUnPanierDe14Euros()
         {
             Panier = new Panier();
 
@@ -30,6 +30,7 @@ namespace Dojo.BDD
             Panier.AjouterFruits(TypeDeFruit.Pomme, 2);
             Panier.AjouterFruits(TypeDeFruit.Banane, 2);
         }
+
 
         [BeforeScenario("CaisseEnregistreuseParDefaut", Order = 0)]
         public void CaisseEnregistreuseParDefaut()
