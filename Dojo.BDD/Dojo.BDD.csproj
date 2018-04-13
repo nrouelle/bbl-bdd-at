@@ -57,6 +57,7 @@
     <Compile Include="CaisseEnregistreuseSteps.cs" />
     <Compile Include="CaisseEnregistreuse.cs" />
     <Compile Include="ConfigFruit.cs" />
+    <Compile Include="Livraison.cs" />
     <Compile Include="Livraison.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
